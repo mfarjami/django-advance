@@ -1,7 +1,8 @@
-from unicodedata import category
 from django.db import models
-
+from django.contrib.auth import get_user_model
 # Create your models here.
+
+User = get_user_model()
 
 class Post(models.Model):
     '''
@@ -16,7 +17,7 @@ class Post(models.Model):
 
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
-    poblished_date = models.DateTimeField()
+    published_date = models.DateTimeField()
 
     def __str__(self):
         return self.title
