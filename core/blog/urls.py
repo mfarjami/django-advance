@@ -1,3 +1,4 @@
+from re import I
 from django.urls import path, include
 from . import views
 from django.views.generic import TemplateView
@@ -17,4 +18,5 @@ urlpatterns = [
         views.PostDeleteView.as_view(),
         name="post-delete",
     ),
+    path('api/v1/', include('blog.api.v1.urls'))
 ]
