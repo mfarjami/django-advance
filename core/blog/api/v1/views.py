@@ -5,6 +5,9 @@ from rest_framework import status, viewsets
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from .serializers import PostSerializer, CategorySerializer
 from blog.models import Post, Category
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import SearchFilter, OrderingFilter
+from .permissions import IsOwnerOrReadOnly
 
 
 """@api_view(["GET", "POST"])
@@ -58,7 +61,12 @@ def postdetail(request, id):
 class PostModelViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.filter(status=True)
     serializer_class = PostSerializer
-    permission_classes = [IsAdminUser]
+    permission_classes = [IsAuthenticated, IsOwnerOrReadOnly]
+    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
+    filterset_fields = ['category', 'author']
+    search_fields = ['title', 'content']
+    ordering_fields = ['published_date']
+
 
     # def list(self, request):        
     #     serializer = self.serializer_class(self.queryset, many=True)

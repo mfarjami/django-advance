@@ -10,6 +10,7 @@ router.register('post', views.PostModelViewSet, basename='post')
 router.register('category', views.CategoryModelViewSet, basename='category')
 urlpatterns = router.urls
 
+
 # urlpatterns = [
     # path("post/", views.PostListAPIView.as_view(), name="post-list"),
     # path("post/<int:pk>/", views.PostDetailAPIView.as_view(), name="post-detail"),
