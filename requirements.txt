@@ -1,6 +1,12 @@
-django>3.2,<3.3
+# General module
+Django>3.2,<3.3 
+
+djangorestframework
+
+
+# Third party module
+django-filter
 python-decouple
 pillow
-djangorestframework
 markdown
-django-filter
+# --no-deps drf-yasg[validation]
