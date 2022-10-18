@@ -9,4 +9,4 @@ django-filter
 python-decouple
 pillow
 markdown
-# --no-deps drf-yasg[validation]
+#--no-deps drf-yasg[validation]
