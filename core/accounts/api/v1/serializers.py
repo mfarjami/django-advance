@@ -1,4 +1,3 @@
-from dataclasses import fields
 from pkg_resources import require
 from accounts.models import User, Profile
 from rest_framework import serializers
@@ -107,5 +106,17 @@ class ProfileSerializer(serializers.ModelSerializer):
         model = Profile
         fields = ('id', 'email', 'first_name', 'last_name', 'image', 'description')
 
+class ActivationResendSerializer(serializers.Serializer):
+    email = serializers.EmailField(required=True)
 
+    def validate(self, attrs):
+        email = attrs.get('email')
+        try:
+            user_obj = User.objects.get(email=email)
+        except User.DoesNotExist:
+            raise serializers.ValidationError({'details':'user does not exist'})
+        # if user_obj.is_verified:
+        #     raise serializers.ValidationError({'details':'User is already activated and verified'})
+        attrs['user'] = user_obj
+        return super().validate(attrs)
     

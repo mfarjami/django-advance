@@ -40,15 +40,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Rest Framework
+    # rest framework
     'rest_framework',
     'rest_framework.authtoken',
     'django_filters',
     'drf_yasg',
     'rest_framework_simplejwt',
-    # Third-party apps  
+    # third-party apps  
     'accounts',
-    'blog'
+    'blog',
+    'mail_templated',
 
 ]
 
@@ -157,3 +158,13 @@ REST_FRAMEWORK = {
 
 REST_FRAMEWORK = { 'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema' }
 
+
+# email configurations
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_USE_TLS = False
+EMAIL_HOST = 'smtp4dev'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
