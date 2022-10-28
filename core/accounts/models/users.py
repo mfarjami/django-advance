@@ -6,11 +6,13 @@ from .managers import UserManager
 
 # Create your models here.
 
+
 class User(AbstractBaseUser, PermissionsMixin):
     """
     Custom User model for our app
     """
-    email = models.EmailField(_('email address'), unique=True)
+
+    email = models.EmailField(_("email address"), unique=True)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_superuser = models.BooleanField(default=False)
@@ -18,7 +20,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
 
-    USERNAME_FIELD = 'email'
+    USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
 
     objects = UserManager()

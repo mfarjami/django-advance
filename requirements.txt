@@ -2,6 +2,7 @@
 Django>3.2,<3.3 
 
 djangorestframework
+djangorestframework-simplejwt
 
 
 # third party module
@@ -9,8 +10,13 @@ django-filter
 python-decouple
 pillow
 markdown
-#--no-deps drf-yasg[validation]
-drf-yasg[validation]
+# --no-deps drf-yasg[validation]
+# drf-yasg[validation]
+
+
+# refactorin and testing    
+black
+flake8
 
 # email config module
 django-mail-templated

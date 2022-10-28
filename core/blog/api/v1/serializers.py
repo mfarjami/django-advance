@@ -15,8 +15,12 @@ class CategorySerializer(serializers.ModelSerializer):
 
 class PostSerializer(serializers.ModelSerializer):
     snippet = serializers.ReadOnlyField(source="get_snippet")
-    relative_url = serializers.URLField(source="get_absolute_api_url", read_only=True)
-    absolute_url = serializers.SerializerMethodField(method_name="get_abs_url")
+    relative_url = serializers.URLField(
+        source="get_absolute_api_url", read_only=True
+    )
+    absolute_url = serializers.SerializerMethodField(
+        method_name="get_abs_url"
+    )
 
     class Meta:
         model = Post
@@ -55,6 +59,7 @@ class PostSerializer(serializers.ModelSerializer):
         return rep
 
     def create(self, validated_data):
-        validated_data["author"] = Profile.objects.get(user__id=self.context.get("request").user.id)
+        validated_data["author"] = Profile.objects.get(
+            user__id=self.context.get("request").user.id
+        )
         return super().create(validated_data)
-
