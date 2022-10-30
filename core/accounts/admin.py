@@ -2,43 +2,47 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from .models import User, Profile
 
-# Register your models here.
-
 
 class CustomUserAdmin(UserAdmin):
+    """
+    Custom admin panel for user management with add and change forms plus password
+    """
+
     model = User
-    list_display = (
-        "email",
-        "created_date",
-        "is_staff",
-        "is_active",
-        "is_superuser",
-        "is_verified",
-    )
-    list_filter = (
-        "created_date",
-        "is_staff",
-        "is_active",
-        "is_superuser",
-        "is_verified",
-    )
-    search_fields = ("created_date",)
-    ordering = ("-created_date",)
+    list_display = ("email", "is_superuser", "is_active", "is_verified")
+    list_filter = ("email", "is_superuser", "is_active", "is_verified")
+    searching_fields = ("email",)
+    ordering = ("email",)
     fieldsets = (
-        ("Authentication", {"fields": ("email", "password")}),
         (
-            "Permissions",
+            "Authentication",
+            {
+                "fields": ("email", "password"),
+            },
+        ),
+        (
+            "permissions",
             {
                 "fields": (
                     "is_staff",
                     "is_active",
                     "is_superuser",
                     "is_verified",
-                )
+                ),
             },
         ),
-        ("Group permissions", {"fields": ("groups", "user_permissions")}),
-        ("Important date", {"fields": ("last_login",)}),
+        (
+            "group permissions",
+            {
+                "fields": ("groups", "user_permissions"),
+            },
+        ),
+        (
+            "important date",
+            {
+                "fields": ("last_login",),
+            },
+        ),
     )
     add_fieldsets = (
         (

@@ -8,6 +8,5 @@ class EmailThread(threading.Thread):
         threading.Thread.__init__(self)
         self.email_obj = email_obj
 
-    # define your own run method
     def run(self):
         self.email_obj.send()

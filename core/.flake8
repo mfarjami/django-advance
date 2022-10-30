@@ -1,4 +1,5 @@
 [flake8]
+
 exclude =
     .git,
     .gitignore,
@@ -10,7 +11,8 @@ exclude =
     settings.py,
     __init__.py,
 
-
 ignore =
     E501,
-    F821
+    F401,
+    W291,
+    W293

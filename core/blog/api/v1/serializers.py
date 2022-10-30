@@ -38,7 +38,7 @@ class PostSerializer(serializers.ModelSerializer):
             "created_date",
             "published_date",
         ]
-        # read_only_fields = ["author"]
+        read_only_fields = ["author"]
 
     def get_abs_url(self, obj):
         request = self.context.get("request")

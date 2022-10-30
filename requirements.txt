@@ -1,22 +1,24 @@
-# general module
-Django>3.2,<3.3 
-
-djangorestframework
-djangorestframework-simplejwt
-
-
-# third party module
-django-filter
+# general  modules
+django >3.2,<3.3
 python-decouple
-pillow
-markdown
-# --no-deps drf-yasg[validation]
-# drf-yasg[validation]
+Pillow
+djangorestframework
 
 
-# refactorin and testing    
+# third party modules
+markdown       
+django-filter  
+drf-yasg[validation]
+djangorestframework-simplejwt
+djoser
+
+# deployment module
+
+# email third party modules
+django-mail-templated
+
+# refactoring and tests
 black
 flake8
-
-# email config module
-django-mail-templated
+pytest
+pytest-django

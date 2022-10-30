@@ -1,18 +1,38 @@
 from django.urls import path
-from accounts.api.v1 import views
-from rest_framework_simplejwt.views import (
+from .. import views
+from rest_framework_simplejwt.views import (    
     TokenRefreshView,
     TokenVerifyView,
 )
 
-
 urlpatterns = [
-    # Auth token
+    # registration
     path(
         "registration/",
         views.RegistrationApiView.as_view(),
         name="registration",
     ),
+    path("test-email", views.TestEmailSend.as_view(), name="test-email"),
+    # activation
+    path(
+        "activation/confirm/<str:token>",
+        views.ActivationApiView.as_view(),
+        name="activation",
+    ),
+    # resend activation
+    path(
+        "activation/resend/",
+        views.ActivationResendApiView.as_view(),
+        name="activation-resend",
+    ),
+    # change password
+    path(
+        "change-password/",
+        views.ChangePasswordApiView.as_view(),
+        name="change-password",
+    ),
+    # reset password
+    # login token
     path(
         "token/login/",
         views.CustomObtainAuthToken.as_view(),
@@ -20,25 +40,10 @@ urlpatterns = [
     ),
     path(
         "token/logout/",
-        views.CustomDisCardAuthToken.as_view(),
+        views.CustomDiscardAuthToken.as_view(),
         name="token-logout",
     ),
-    path(
-        "change-password/",
-        views.ChangePasswordApiView.as_view(),
-        name="change-password",
-    ),
-    path(
-        "activation/confirm/<str:token>",
-        views.ActivationApiView.as_view(),
-        name="activation",
-    ),
-    path(
-        "activation/resend/",
-        views.ActivationResendApiView.as_view(),
-        name="activation-resend",
-    ),
-    # JWT token
+    # login jwt
     path(
         "jwt/create/",
         views.CustomTokenObtainPairView.as_view(),

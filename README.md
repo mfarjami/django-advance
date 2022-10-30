@@ -1,2 +1,2 @@
-# django-advance
-The first advance course to the maktabkhooneh
+# Django-Advance-Blog
+ this will be the project for maktabkhooneh
