@@ -1,4 +1,3 @@
-import profile
 from unicodedata import category
 from django.core.management.base import BaseCommand
 from faker import Faker
@@ -7,16 +6,16 @@ from datetime import datetime
 from accounts.models import User, Profile
 from blog.models import Post, Category
 
+
 category_list = [
-    'IT',
-    'Languages',
-    'Sports',
-    'Learning',
+    "IT",
+    "Languages",
+    "Sports",
+    "Learning",
 ]
 
-class Command(BaseCommand):
-    help = 'Closes the specified poll for voting'
 
+class Command(BaseCommand):
     def __init__(self, *args, **kwargs):
         super(Command, self).__init__(*args, **kwargs)
         self.fake = Faker()
@@ -29,18 +28,15 @@ class Command(BaseCommand):
         profile.description = self.fake.paragraph(nb_sentences=6)
         profile.save()
 
-
         for name in category_list:
             Category.objects.get_or_create(name=name)
-            
 
         for _ in range(10):
             Post.objects.create(
-                author = profile,
-                title = self.fake.paragraph(nb_sentences=1),
-                content = self.fake.paragraph(nb_sentences=10),
-                status = random.choice([True, False]),
-                category = Category.objects.get(name=random.choice(category_list)),
-                published_date = datetime.now(),
-
+                author=profile,
+                title=self.fake.paragraph(nb_sentences=1),
+                content=self.fake.paragraph(nb_sentences=10),
+                status=random.choice([True, False]),
+                category=Category.objects.get(name=random.choice(category_list)),
+                published_date=datetime.now(),
             )
