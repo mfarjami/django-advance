@@ -28,3 +28,4 @@ Faker
 #backgrund porcess and c
 celery
 redis
+django-redis
